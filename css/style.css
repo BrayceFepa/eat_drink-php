@@ -1,0 +1,273 @@
+body {
+    background-color: #fff;
+}
+
+.footer-background {
+    background-color: rgb(204, 199, 199);
+}
+
+
+
+section {
+    padding: 80px 7% 20px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,500;1,700&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* Styles généraux */
+.btn {
+    display: inline-block;
+    background: #df2020;
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+/* ---- NavBar Style ----------*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+}
+
+.navbar .logo img {
+    height: 70px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #212245;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .logo {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.navbar .nav-link a {
+    margin: 0 30px;
+    transition: .2s linear;
+}
+
+.navbar .nav-link a:hover {
+    color: #df2020;
+}
+
+.navbar .icons .fa {
+    font-size: 30px;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #212245;
+}
+
+.navbar .icons {
+    margin-right: 50px;
+}
+
+.navbar .icons .panier {
+    position: relative;
+}
+
+#number {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #df2020;
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -15px;
+    right: -10px;
+}
+
+#navBtn {
+    display: none;
+}
+
+.inscription-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/product_01.1.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+    padding: 90px 40px 0 40px;
+    color: #fff;
+}
+
+.inscription-header h2 {
+    font-size: 35px;
+}
+
+@media(max-width:991px){
+    #heading{
+        padding-left: 50px;
+    }
+    #prc{
+        margin-left: 70px;
+        padding-left: 110px;
+    }
+    #quantity{
+        padding-left: 48px;
+    }
+    #produc{
+        padding-left: 40px;
+    }
+    #total{
+        padding-left: 54px;
+    }
+}
+@media(max-width:767px){
+    .mobile{
+        font-size: 10px;
+    }
+    h5{
+        font-size: 14px;
+    }
+    h6{
+        font-size: 9px;
+    }
+    #mobile-font{
+        font-size: 11px;
+    }
+    #prc{
+        font-weight: 700;
+        margin-left: -45px;
+        padding-left: 105px;
+    }
+    #quantity{
+        font-weight: 700;
+        padding-left: 6px;
+    }
+    #produc{
+        font-weight: 700;
+        padding-left: 0px;
+    }
+    #total{
+        font-weight: 700;
+        padding-left: 9px;
+    }
+    #image{
+        width: 60px;
+        height: 60px;
+    }
+    .col{
+        width: 100%;
+    }
+    #zero-pad{
+        padding: 2%;
+        margin-left: 10px;
+    }
+    #footer-font{
+        font-size: 12px;
+    }
+    #heading{
+        padding-top: 15px;
+    }
+}
+
+
+
+.food-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.food-row .food-card img {
+    height: 120px;
+    transition: all .7s ease;
+}
+
+.food-row .food-card img:hover {
+    animation: size .5s linear;
+    transform: scale(1.2);
+}
+
+.food-row .food-card {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-basis: 22%;
+    border: 1px solid #ff8383;
+    padding: 20px 10px;
+    margin: 20px 0;
+}
+
+.food-row .food-card h4 {
+    text-transform: capitalize;
+    color: #212245;
+    font-size: 18px;
+    transition: .6s;
+}
+
+.food-row .food-card h4:hover {
+    color: #df2020;
+}
+
+.food-row .food-card .card-foot h3 {
+    font-size: 15px;
+}
+
+.food-row .food-card .card-foot .f-btn {
+    font-size: 12px;
+    padding: 8px 15px;
+}
+
+.f-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin-top: 40px;
+}
+
+.card-foot h3 {
+    color: #df2020;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.food-row .food-card input{
+    width: 30%;
+    height: 25px;
+    border: 2px solid #df2020;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    padding-left: 15px;
+}
+/* .food-row .food-card input */
