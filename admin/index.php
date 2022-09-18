@@ -107,6 +107,20 @@ if (isset($_SESSION) && $_SESSION['type'] == 'admin') {
             </div>
 
 
+            <div class="col-lg-4 col-sm-6">
+              <div class="circle-tile ">
+                <a href="#">
+                  <div class="circle-tile-heading purple"><i class="fa fa-users fa-fw fa-3x"></i></div>
+                </a>
+                <div class="circle-tile-content purple">
+                  <div class="circle-tile-description text-faded"> Éditer produit </div>
+
+                  <a class="circle-tile-footer" href="pages/produits.php">Éditer maintenant <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

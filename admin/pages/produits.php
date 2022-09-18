@@ -1,86 +1,149 @@
+<?php
+session_start();
+if (isset($_SESSION) && $_SESSION['type'] == 'admin') {
+} else {
+    header('location:login.php');
+    exit();
+}
+require_once("../../config.php");
+// require_once("../../functions/display.php");
+// require_once("../../functions/product.php");
+
+
+$request = "SELECT * FROM `produit`";
+$statement = $pdo->prepare($request);
+$statement->execute();
+$products = [];
+try {
+    if ($statement->rowCount() > 0) {
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        throw new Exception('La table produit est vide');
+    }
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+// if (isset($_POST['submit'])) {
+//     $productname = $_POST['productname'];
+//     $productqty = $_POST['productqty'];
+//     $producprice = $_POST['producprice'];
+//     $producpath = $_POST['producpath'];
+
+//     var_dump($_POST);
+// }
+
+
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>EAT & DRINK SHOP</title>
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href=".././css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap4.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits-Admin</title>
+    <!-- Font awesome link cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Normalize CSS link -->
+    <link rel="stylesheet" href="../../css/normalize.css" />
+
+    <!-- custom CSS link -->
+    <link rel="stylesheet" href="../../css/style.css" />
 </head>
 
 <body>
 
-    <div class="container bg-white rounded-top mt-5" id="zero-pad">
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-10 col-12 pt-3">
-                <div class="d-flex">
-                    <div class="pt-1">
-                        <h4>EAT & DRINK SHOP</h4>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../../images/res-logo.png" alt="" />
+            <a href="">eat & drink</a>
+        </div>
+
+        <div class="nav-link">
+            <a href="">accueil</a>
+            <a href="">repas</a>
+            <a href="../../shoppingbag.php">panier</a>
+            <a href="">contact</a>
+        </div>
+
+        <div class="icons">
+            <div class="fa fa-shopping-basket panier">
+                <a href="../../shoppingbag.php">
+                    <div id="number">
+                        <?php
+                        $request1 = "SELECT * FROM `shoppingbag`";
+                        $execution = $pdo->prepare($request1);
+                        $execution->execute();
+
+                        $quantity = 0;
+                        while ($quantityArray = $execution->fetch()) {
+                            $quantity += $quantityArray['quantity'];
+                        }
+                        echo $quantity;
+                        ?>
                     </div>
-
-                    <div class="ml-auto p-2"><a href="#" class="text-dark text-decoration-none" id="mobile-font"> Bienvenue xxxx</a></div>
-                    <div class="p-2"><a href="fonctions/logout.php" class="text-dark text-decoration-none a" id="mobile-font">Logout</a></div>
-
-
-                </div>
-
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011-04-25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011-07-25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009-01-12</td>
-                            <td>$86,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                </a>
 
             </div>
+            <a href="../../pages/login.php" class="fa fa-user"></a>
+            <div class="fa fa-bars" id="navBtn"></div>
         </div>
+    </nav>
+
+
+
+    <header class="inscription-header">
+        <h2>Repas</h2>
+    </header>
+    <div class="container">
+        <?php
+        if (isset($errors)) {
+            echo "<p>$errors</p>";
+        }
+        if (isset($success)) {
+            echo "<p class = 'success'>$success</p>";
+        }
+
+        ?>
     </div>
 
+    <section class="popular-foods">
 
-    <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
+        <div class="foods">
+
+            <div class="food-row" id="food-row">
+
+                <?php
+
+                foreach ($products as $product) {
+                    // products($product['id_produit'], $product['nom_produit'], $product['prix'], $product['chemin']);
+                    echo
+                    "
+                        <form action=\"index.php\" class=\"food-card\" method=\"POST\">
+                            <img src=\"../../" . $product['chemin'] . "\" alt=\"\">
+                            <h4>{$product['nom_produit']}</h4>
+                            <input type=\"hidden\" name=\"productname\" value=\"\">
+                            <input type=\"number\" name=\"productqty\" value=\"1\" min=\"1\">
+                            <div class=\"card-foot\">
+                                <h3>{$product['prix']} fcfa</h3>
+                                <a href = \"edit_produit.php?prod_id={$product['id_produit']}\" class=\"btn f-btn\">Editer</a>
+                            </div>
+                            <input type=\"hidden\" name=\"productid\" value=\"\">
+                            <input type=\"hidden\" name=\"producprice\" value=\"\">
+                            <input type=\"hidden\" name=\"producpath\" value=\"\">
+                        </form>
+                        ";
+                }
+
+                ?>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </body>
 
 </html>

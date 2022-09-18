@@ -12,4 +12,4 @@ $stmt1 = $pdo->prepare($sql1);
 $stmt1->execute();
 $categories = $stmt1->fetchAll();
 
-var_dump($categories);
+// var_dump($categories);
